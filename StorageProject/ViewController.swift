@@ -12,7 +12,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     @IBOutlet weak var tableView: UITableView!
     
-    let firebase = Database.database().reference()
+    let database = Database.database().reference()
     
     var arrayOf = ArrayOf()
     var names = String()
@@ -28,7 +28,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         tableView.dataSource = self
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "myCell")
         getStorages()
-        
     }
     
     func getStorages() {
@@ -46,23 +45,22 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 //self.arrayOf.quantity.append(quantity)
             }
             
+            var storageExists = false
+            for x in self.storages {
+                if self.arrayOf.location.last == x {
+                    storageExists = true
+                }
+            }
+            
+            if storageExists == false {
+                self.storages.append(self.arrayOf.location.last!)
+            }
+            
             DispatchQueue.main.async {
-                var storageExists = false
-                for x in self.storages {
-                    if self.arrayOf.location.last == x {
-                        storageExists = true
-                    }
-                }
-                
-                if storageExists == false {
-                    self.storages.append(self.arrayOf.location.last!)
-                }
-                
                 print(self.storages)
                 self.tableView.reloadData()
             }
         }
-    
     }
     
     
@@ -72,7 +70,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         alert.addTextField { (textfield) in
             textfield.placeholder = "Storage Name"
         }
-        
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         alert.addAction(cancelAction)
@@ -84,13 +81,15 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         self.present(alert, animated: true, completion: nil)
     }
     
+    
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.arrayOf.names.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "myCell")!
-        cell.textLabel?.text = "\(self.arrayOf.location[indexPath.row])"
+        cell.textLabel?.text = "\(self.storages[indexPath.row])"
         cell.detailTextLabel?.text = "\(self.arrayOf.quantity[indexPath.row])"
         return cell
     }
