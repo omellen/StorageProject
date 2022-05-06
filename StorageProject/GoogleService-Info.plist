@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>422482842088-itk8slsg6nhg9ju8vfne94gsk7ohdta2.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.422482842088-itk8slsg6nhg9ju8vfne94gsk7ohdta2</string>
+	<key>API_KEY</key>
+	<string>AIzaSyD3V0PT9k4KehK8hKYOZP3KGSrtpdwivBo</string>
+	<key>GCM_SENDER_ID</key>
+	<string>422482842088</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>omellen.StorageProject</string>
+	<key>PROJECT_ID</key>
+	<string>storagefirebaseproject</string>
+	<key>STORAGE_BUCKET</key>
+	<string>storagefirebaseproject.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:422482842088:ios:8da463e26ab4105c11145d</string>
+</dict>
+</plist>
