@@ -43,17 +43,17 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 self.arrayOf.names.append(name)
                 self.arrayOf.location.append(locationName)
                 //self.arrayOf.quantity.append(quantity)
-            }
-            
-            var storageExists = false
-            for x in self.storages {
-                if self.arrayOf.location.last == x {
-                    storageExists = true
+                
+                var storageExists = false
+                for x in self.storages {
+                    if locationName == x {
+                        storageExists = true
+                    }
                 }
-            }
-            
-            if storageExists == false {
-                self.storages.append(self.arrayOf.location.last!)
+                
+                if storageExists == false {
+                    self.storages.append(locationName)
+                }
             }
             
             DispatchQueue.main.async {
@@ -84,12 +84,23 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.arrayOf.names.count
+        var count = 0
+        if storages.isEmpty {
+            count = 0
+        } else {
+            count = self.storages.count
+        }
+        return count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "myCell")!
-        cell.textLabel?.text = "\(self.storages[indexPath.row])"
+        if storages.isEmpty {
+            cell.textLabel?.text = ""
+        } else {
+            print(storages)
+            cell.textLabel?.text = "\(self.storages[indexPath.row])"
+        }
         cell.detailTextLabel?.text = "\(self.arrayOf.quantity[indexPath.row])"
         return cell
     }
