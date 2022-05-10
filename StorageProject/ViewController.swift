@@ -18,12 +18,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     var names = String()
     var location = String()
     var quantity = Int()
-    
     var storages: [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "myCell")
@@ -31,8 +29,29 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func getStorages() {
-        arrayOf.names = []
+        arrayOf.itemNames = []
         arrayOf.location = []
+        arrayOf.storages = []
+        
+//        let nameReference = database.child("Storage")
+//        nameReference.observe(.value) { (snapshot) in
+//            for data in snapshot.children.allObjects as! [DataSnapshot] {
+//                let storage = data.key
+//                self.arrayOf.storages.append(storage)
+//
+//                for x in data.children.allObjects as! [DataSnapshot] {
+//                    let items = x.key
+//                    self.arrayOf.itemNames.append(items)
+//                }
+//
+//            }
+//
+//            DispatchQueue.main.async {
+//                print(self.arrayOf.storages)
+//            }
+//        }
+        
+        
         
         let nameReference = Database.database().reference().child("Item")
         nameReference.observe(.value) { (snapshot) in
@@ -40,24 +59,24 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 let name = data.key
                 let locationName = data.childSnapshot(forPath: "Location").value as! String
                 //let quantity = data.childSnapshot(forPath: "Quantity").value as! Int
-                self.arrayOf.names.append(name)
+        
+                self.arrayOf.itemNames.append(name)
                 self.arrayOf.location.append(locationName)
                 //self.arrayOf.quantity.append(quantity)
-                
+
                 var storageExists = false
                 for x in self.storages {
                     if locationName == x {
                         storageExists = true
                     }
                 }
-                
+
                 if storageExists == false {
                     self.storages.append(locationName)
                 }
             }
-            
+
             DispatchQueue.main.async {
-                print(self.storages)
                 self.tableView.reloadData()
             }
         }
@@ -75,8 +94,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         alert.addAction(cancelAction)
         
         let addAction = UIAlertAction(title: "Add", style: .default) { (action) in
-            
+            let nameTFT = alert.textFields?[0].text
+            self.storages.append(nameTFT!)
+            self.tableView.reloadData()
         }
+        
         alert.addAction(addAction)
         self.present(alert, animated: true, completion: nil)
     }
@@ -98,7 +120,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         if storages.isEmpty {
             cell.textLabel?.text = ""
         } else {
-            print(storages)
             cell.textLabel?.text = "\(self.storages[indexPath.row])"
         }
         cell.detailTextLabel?.text = "\(self.arrayOf.quantity[indexPath.row])"
