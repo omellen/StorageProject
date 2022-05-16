@@ -34,7 +34,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         arrayOf.location = []
         arrayOf.storages = []
         
-        
         let nameReference = Database.database().reference().child("Item")
         nameReference.observe(.value) { (snapshot) in
             for data in snapshot.children.allObjects as! [DataSnapshot] {

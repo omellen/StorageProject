@@ -17,7 +17,8 @@ class ItemsViewController: UIViewController, UITableViewDataSource, UITableViewD
     var names = String()
     var location = String()
     var quantity = Int()
-    var storages: [String] = []
+    
+    var items: [String] = []
     
     let database = Database.database().reference()
     
@@ -27,15 +28,14 @@ class ItemsViewController: UIViewController, UITableViewDataSource, UITableViewD
         self.title = storageTitle
         self.tableview.delegate = self
         tableview.dataSource = self
-        tableview.register(UITableView.self, forCellReuseIdentifier: "myCell")
-        getStorages()
+        tableview.register(UITableViewCell.self, forCellReuseIdentifier: "myCell")
+        getItems()
     }
     
-    func getStorages() {
+    func getItems() {
         arrayOf.itemNames = []
         arrayOf.location = []
         arrayOf.storages = []
-        
         
         let nameReference = Database.database().reference().child("Item")
         nameReference.observe(.value) { (snapshot) in
@@ -48,36 +48,41 @@ class ItemsViewController: UIViewController, UITableViewDataSource, UITableViewD
                 self.arrayOf.location.append(locationName)
                 //self.arrayOf.quantity.append(quantity)
 
+                if locationName == self.storageTitle {
+                    self.items.append(name)
+                }
             }
 
             DispatchQueue.main.async {
+                print(self.items)
                 self.tableview.reloadData()
             }
         }
     }
+    
+    
     @IBAction func whenAddItemsPressed(_ sender: Any) {
-        
         
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
+        var count = 0
+        if items.isEmpty {
+            count = 0
+        } else {
+            count = self.items.count
+        }
+        return count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        <#code#>
+        let cell = tableView.dequeueReusableCell(withIdentifier: "myCell")!
+        if items.isEmpty {
+            cell.textLabel?.text = ""
+        } else {
+            cell.textLabel?.text = "\(self.items[indexPath.row])"
+        }
+        return cell
     }
     
-
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
