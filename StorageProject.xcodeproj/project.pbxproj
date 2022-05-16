@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		06049BF32832BFD400FC27C5 /* ItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06049BF22832BFD400FC27C5 /* ItemsViewController.swift */; };
 		06336384282050C9009B2E72 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06336383282050C9009B2E72 /* AppDelegate.swift */; };
 		06336386282050C9009B2E72 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06336385282050C9009B2E72 /* SceneDelegate.swift */; };
 		06336388282050C9009B2E72 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06336387282050C9009B2E72 /* ViewController.swift */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		06049BF22832BFD400FC27C5 /* ItemsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsViewController.swift; sourceTree = "<group>"; };
 		06336380282050C9009B2E72 /* StorageProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StorageProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		06336383282050C9009B2E72 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		06336385282050C9009B2E72 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -70,6 +72,7 @@
 				06336383282050C9009B2E72 /* AppDelegate.swift */,
 				06336385282050C9009B2E72 /* SceneDelegate.swift */,
 				06336387282050C9009B2E72 /* ViewController.swift */,
+				06049BF22832BFD400FC27C5 /* ItemsViewController.swift */,
 				06F13A772822F37900086A99 /* ArrayOf.swift */,
 				06336389282050C9009B2E72 /* Main.storyboard */,
 				0633638C282050CB009B2E72 /* Assets.xcassets */,
@@ -215,6 +218,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				06049BF32832BFD400FC27C5 /* ItemsViewController.swift in Sources */,
 				06F13A782822F37900086A99 /* ArrayOf.swift in Sources */,
 				06336388282050C9009B2E72 /* ViewController.swift in Sources */,
 				06336384282050C9009B2E72 /* AppDelegate.swift in Sources */,

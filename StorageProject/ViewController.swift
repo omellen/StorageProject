@@ -11,6 +11,7 @@ import Firebase
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var tableView: UITableView!
+    var selectedStorage: String = ""
     
     let database = Database.database().reference()
     
@@ -32,25 +33,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         arrayOf.itemNames = []
         arrayOf.location = []
         arrayOf.storages = []
-        
-//        let nameReference = database.child("Storage")
-//        nameReference.observe(.value) { (snapshot) in
-//            for data in snapshot.children.allObjects as! [DataSnapshot] {
-//                let storage = data.key
-//                self.arrayOf.storages.append(storage)
-//
-//                for x in data.children.allObjects as! [DataSnapshot] {
-//                    let items = x.key
-//                    self.arrayOf.itemNames.append(items)
-//                }
-//
-//            }
-//
-//            DispatchQueue.main.async {
-//                print(self.arrayOf.storages)
-//            }
-//        }
-        
         
         
         let nameReference = Database.database().reference().child("Item")
@@ -124,6 +106,17 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
         cell.detailTextLabel?.text = "\(self.arrayOf.quantity[indexPath.row])"
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        selectedStorage = "\(storages[indexPath.row])"
+        self.performSegue(withIdentifier: "ItemsSegue", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+    {
+        let vc = segue.destination as! ItemsViewController
+        vc.storageTitle = selectedStorage
     }
 }
 

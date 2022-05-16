@@ -45,7 +45,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="1Kn-33-vlZ" kind="show" id="GWg-IU-RD3"/>
+                                            <segue destination="1Kn-33-vlZ" kind="show" identifier="ItemsSegue" id="GWg-IU-RD3"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -71,10 +71,10 @@
             </objects>
             <point key="canvasLocation" x="367.69230769230768" y="79.620853080568722"/>
         </scene>
-        <!--View Controller-->
+        <!--Items View Controller-->
         <scene sceneID="D9Z-eS-apF">
             <objects>
-                <viewController id="1Kn-33-vlZ" sceneMemberID="viewController">
+                <viewController id="1Kn-33-vlZ" customClass="ItemsViewController" customModule="StorageProject" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="SsS-x4-ZIU">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -116,9 +116,16 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="dqy-vP-mVr">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="W6A-HJ-uTZ"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="W6A-HJ-uTZ">
+                            <connections>
+                                <action selector="whenAddItemsPressed:" destination="1Kn-33-vlZ" id="vVm-bc-xEf"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="tableview" destination="Bgt-ga-AHa" id="78A-ql-rL1"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tiT-18-gBD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
