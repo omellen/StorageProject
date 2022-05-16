@@ -32,7 +32,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     func getStorages() {
         arrayOf.itemNames = []
         arrayOf.location = []
-        arrayOf.storages = []
         
         let nameReference = Database.database().reference().child("Item")
         nameReference.observe(.value) { (snapshot) in

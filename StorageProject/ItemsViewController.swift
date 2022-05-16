@@ -20,7 +20,6 @@ class ItemsViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     var items: [String] = []
     
-    let database = Database.database().reference()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,7 +34,6 @@ class ItemsViewController: UIViewController, UITableViewDataSource, UITableViewD
     func getItems() {
         arrayOf.itemNames = []
         arrayOf.location = []
-        arrayOf.storages = []
         
         let nameReference = Database.database().reference().child("Item")
         nameReference.observe(.value) { (snapshot) in
@@ -62,7 +60,29 @@ class ItemsViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     
     @IBAction func whenAddItemsPressed(_ sender: Any) {
+        let alert = UIAlertController(title: "Add New Item", message: "List the name of your new item", preferredStyle: .alert)
         
+        alert.addTextField { (textfield) in
+            textfield.placeholder = "Item Name"
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alert.addAction(cancelAction)
+        
+        let addAction = UIAlertAction(title: "Add", style: .default) { (action) in
+            let nameTFT = alert.textFields?[0].text
+            
+            let database = Database.database().reference().child("Item")
+        
+            let newItemRef = database.child(nameTFT!)
+            newItemRef.child("Location").setValue(self.storageTitle)
+            
+            self.getItems()
+            self.tableview.reloadData()
+        }
+        
+        alert.addAction(addAction)
+        self.present(alert, animated: true, completion: nil)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

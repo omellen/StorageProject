@@ -8,7 +8,6 @@
 import Foundation
 
 class ArrayOf {
-    var storages: [String] = []
     var itemNames: [String] = []
     var location: [String] = []
     var quantity: [Int] = []
